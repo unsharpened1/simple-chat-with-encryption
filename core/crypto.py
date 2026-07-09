@@ -28,7 +28,7 @@ def deserialize(pem):
     return public_key
 
 
-def encrypt_rsa(msg, pub):
+def encrypt(msg, pub):
     ciphertext = pub.encrypt(
         msg,
         padding.OAEP(
@@ -41,7 +41,7 @@ def encrypt_rsa(msg, pub):
     return ciphertext
 
 
-def decrypt_rsa(msg, priv):
+def decrypt(msg, priv):
     decrypted_message = priv.decrypt(
         msg,
         padding.OAEP(

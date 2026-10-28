@@ -212,9 +212,14 @@ def main():
     print("[*] Генерация пары криптографических ключей RSA...")
     my_private_key, my_public_key = crypto.genkey()
 
-    HOST = 'localhost'
-    PORT = 40000
-    
+    HOST = input("Введите IP-адрес сервера (по умолчанию localhost): ").strip() or 'localhost'
+    port_input = input("Введите порт сервера (по умолчанию 40000): ").strip()
+    try:
+        PORT = int(port_input) if port_input else 40000
+    except ValueError:
+        print("[!] Некорректный порт, используется 40000.")
+        PORT = 40000
+
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         sock.connect((HOST, PORT))
